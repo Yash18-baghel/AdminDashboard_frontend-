@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Protected from './Protected';
+import SignUp from './Pages/SignUp';
+import Create from './Pages/Create';
+import Edit from './Pages/Edit';
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<SignUp/>} />
+          <Route path="Home" element={<Protected Cmp = {Home }/>} />
+          <Route path="Addproduct" element={<Protected Cmp = {Create }/>} />
+          <Route path={`Edit/:id`} element={<Protected Cmp = {Edit }/>} />
+          <Route path="Login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 
